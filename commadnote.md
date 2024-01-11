@@ -303,15 +303,25 @@ entry_points={
 explaination: node name, package name, file name, main
 *****
 
-2. compile with below command
+2. compile all the package
+
+```colcon build```
+
+compile with below command python
 ```
 colcon build --symlink-install 
 ```
-3. source or open a new cmd window sources automaticlyy
+build only the my_package package 
+
+```colcon build --packages-select my_package```
+
+3. source or open a new cmd window sources automaticly
 ```
 source ~/.bashrc
 ```
+ from inside the ros2_ws directory, run the following command to source your workspace:
 
+ ```source install/local_setup.bash```
 
 
 
