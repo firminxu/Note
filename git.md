@@ -31,8 +31,9 @@ git push
 
 
 ```
+****************
 create .gitignore file
-
+*****************
 ```
 #ignore folder
 logs/
@@ -42,3 +43,7 @@ cache/
 *.txt
 
 ```
+**********
+remark:
+**********
+# Git push the local folders that git cloned from someone else to my own repository. you should delete original .git folder
