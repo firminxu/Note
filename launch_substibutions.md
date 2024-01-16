@@ -237,12 +237,16 @@ change_background_r_conditioned = ExecuteProcess(
 ```
 return解释：
 -turtlesim_ns_launch_arg: turtlesim_ns，缺省值为turtlesim1,在父launch文件中定义为turtlesim2
+
 -use_provided_red_launch_arg: use_provided_red，缺省值为False,在父launch文件中定义为True
+
 -new_background_r_launch_arg: new_background_r,缺省值为200, 在父launch文件中定义为200
+
 -turtlesim_node: 用于创建节点：package='turtlesim', namespace=turtlesim_ns, executable='turtlesim_node', name='sim'
+
 相当于命令行：
 ```
-ros2 run turtlesim turtlesim_node __ns:=/turtlesim2 __node:=sim
+ros2 run turtlesim turtlesim_node --ros-args --remap __ns:=/turtlesim2 --remap __node:=sim
 
 ```
 -spawn_turtle: 是一个完整的命令行：
