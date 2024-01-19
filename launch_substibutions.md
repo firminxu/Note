@@ -246,16 +246,16 @@ return解释：
 
 相当于命令行：
 ```
-ros2 run turtlesim turtlesim_node --ros-args --remap __ns:=/turtlesim2 --remap __node:=sim
+ros2 run turtlesim turtlesim_node --ros-args --remap __ns:=/turtlesim_ns --remap __node:=sim
 
 ```
 -spawn_turtle: 是一个完整的命令行：
 ```
-ros2 service call turtlesim2/spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2}"
+ros2 service call turtlesim_ns/spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2}"
 ```
 -change_background_r： 是一个完整的命令行:
 ```
-ros2 param set turtlesim2/sim background_r 120
+ros2 param set turtlesim/sim background_r 120
 ```
 -imerAction: 周期两秒，执行change_background_r_conditioned
 

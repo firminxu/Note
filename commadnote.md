@@ -147,8 +147,10 @@ package   proto
 ```
 ros2 service call
 ros2 service find
+ros2 service info <service_name>
 --include-hidden-services
 ros2 service list
+
 
 ```
 ### To find out the type of a service
@@ -168,9 +170,15 @@ ros2 service type <service_name>
 
 example:
 
-```ros2 service call /clear std_srvs/srv/Empty```
+```
+ros2 service call /clear std_srvs/srv/Empty
 
-```ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}"```
+ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}"
+
+ros2 service call /kill turtlesim/srv/Kill "{name: 'turtle2'}"
+
+```
+
 
 
 
@@ -251,6 +259,14 @@ ros2 run <package_name> <executable_name> --ros-args --params-file <file_name>
 
 ros2 run turtlesim turtlesim_node --ros-args --params-file turtlesim.yaml
 ```
+
+*****
+# tf2 command
+*****
+查看frame：
+```ros2 run tf2_tools view_frames```
+查看frame相对位置
+```ros2 run tf2_ros tf2_echo [source_frame] [target_frame]```
 
 
 
