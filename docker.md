@@ -21,7 +21,6 @@ sudo docker pull portainer/portainer-ce:linux-arm
 ```
 sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
 
-sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
 
 
 ```
@@ -77,11 +76,12 @@ docker image prune
 docker images rm imagename
 ```
 
-# list all the containers including thoser not in use
+# list all the container
 
 ```
-docker container ls -all
+docker ps -a
 ```
+
 # docker remove the tag, but not the image.
 
 ```
@@ -99,4 +99,33 @@ exit
 
 ```
 docker ps
+```
+
+# list all the images
+
+```
+docker images
+```
+
+# run image in the container
+
+```
+docker run <respository><tag>
+```
+
+# run container in background and print the container ID
+
+```
+docker run -d <respository><tag>
+```
+# stop certain container
+
+```
+docker stop <container ID>
+```
+
+# publish a container's port to the host, -p
+
+```
+docker run -d -p 8000:80 <respository><tag>
 ```
