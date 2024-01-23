@@ -11,3 +11,8 @@ docker run -it ubuntu bash
 docker run -it ubuntu top
 ```
 
+# 查看ip地址
+
+```
+ip addr
+```

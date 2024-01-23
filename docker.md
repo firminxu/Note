@@ -223,11 +223,15 @@ docker run -v myvol:/app/data [image]
 ```
 docker run -it --name mycontainer -v /host/path:/container/path image_name
 
-docker run -it --name xxxx-v /home/pi/data/:/path/to/folder ros:humble-perception-jammy 
+docker run -it --name xxxx -v /home/pi/data/:/path/to/folder ros:humble-perception-jammy 
+
+例子：
+
+docker run -it --name robot -v /home/pi/data/:/usr/data ros:humble-perception-jammy
 
 ```
 
-# Bind Mounts 已有容器, 树莓派好像不支持 sudo apt install docker.io
+# Bind Mounts 已有容器, 不支持树莓派
 
 ```
 docker container update --mount type=bind,source=<host_folder_path>,target=<container_folder_path> <container_name>
@@ -237,6 +241,7 @@ docker container update --mount-add type=bind,source=/path/on/host,target=/path/
 
 docker container update --mount -add type=bind,source=/home/pi/data,target=/usr/data crazy_dirac
 
+docker container update -v type=bind,source=/home/pi/data,target=/usr/data crazy_dirac
 ```
 
 # 文件复制操作
@@ -261,10 +266,3 @@ docker cp /home/pi/test.txt 88e1ed11b40e:/usr/share
 
 ```docker cp <container_id>:<source> <destination>```
 
-## 查看container路径
-
-```
-docker inspect --format='{{json .GraphDriver.Data.MergedDir}}' CONTAINER_ID
-docker inspect --format='{{json .GraphDriver.Data.MergedDir}}' 88e1ed11b40e 
-
-```
