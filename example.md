@@ -137,9 +137,9 @@ ros2 pkg create my_robot_controller --build-type ament_python --dependencies rcl
 ### in "my_robot_controller" folder(in "my_robot_controller" folder)
 
 
-*********************
-# colcon build after create a new file in the package
-********************
+***
+# 在包中创建新文件后，colcon build流程
+
 1. change below in setup.py
 ```
 entry_points={
@@ -166,3 +166,72 @@ colcon build --symlink-install
 ```
 source ~/.bashrc
 ```
+
+
+***
+# 创建工作空间流程
+
+```
+mkdir ros2_ws
+cd ros2_ws
+mkdir src
+
+```
+### in ros2_ws folder 
+```
+colcon build
+```
+(if there is err when do colcon build, downgrade setuptools to 58.2.0)
+pip3 install setuptools==58.2.0
+
+# after that you can see folder "install", "build" and "log"
+# after adding "source ~/ros2_ws/install/setup.bash" to ~/.bashrc, you don't need to source setup.bash everytime during working on ros2_ws project
+
+### in folder src, create package "my_robot_controller" with rclpy
+```
+ros2 pkg create my_robot_controller --build-type ament_python --dependencies rclpy
+```
+
+### after that you can see new folder ""my_robot_controller" folder", "resource" and "test" in "my_robot_controller" folder 
+
+### in "my_robot_controller" folder(in "my_robot_controller" folder)
+*********************
+# colcon build after create a new file in the package
+********************
+1. change below in setup.py
+```
+entry_points={
+        'console_scripts': []
+}
+```
+*****
+example:
+```
+entry_points={
+        'console_scripts': [
+            'test_node = my_robot_controller.my_first_node:main'
+        ],
+    },
+```
+explaination: node name, package name, file name, main
+*****
+
+2. compile all the package
+
+```colcon build```
+
+compile with below command python
+```
+colcon build --symlink-install 
+```
+build only the my_package package 
+
+```colcon build --packages-select my_package```
+
+3. source or open a new cmd window sources automaticly
+```
+source ~/.bashrc
+```
+ from inside the ros2_ws directory, run the following command to source your workspace:
+
+ ```source install/local_setup.bash```

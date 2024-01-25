@@ -41,7 +41,7 @@
 
 
 **********************
-# node command
+# node 命令
 **********************
 ```
 ros2 node list 
@@ -50,7 +50,7 @@ ros2 node info /XXXX
 ```
 
 **********************
-# topic command
+# topic 命令
 **********************
 
 ### topic list
@@ -81,7 +81,7 @@ ros2 node info /XXXX
 
 ```ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle```
 
-###  publish data to a topic directly from the command line using:
+###  publish data to a topic directly from the commane line using:
 ```ros2 topic pub <topic_name> <msg_type> '<args>'```
 
 example:
@@ -95,13 +95,16 @@ ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2
 
 
 **********************
-# interface command
+# interface 命令
 **********************
+## interface show
+
 ### You can call services from the command line, but first you need to know the structure of the input arguments.
+data type:
 
 ```ros2 interface show <type_name>```
 
-example:
+servrice:
 
 ```ros2 interface show turtlesim/srv/Spawn```
 
@@ -115,35 +118,70 @@ string name # Optional.  A unique name will be created and returned if this is e
 string name
 ```
 
-###  interface show example1: show detail of data type
+###  interface show example1: show detail of data(message)
 ```ros2 interface show std_msgs/msg/String ```
 
 
-### interface show example2:
+### interface show example2(service):
 ```
 ros2 interface show example_interfaces/srv/AddTwoInts
-
+```
+return
+```
 int64 a
 int64 b
 ---
 int64 sum
 ```
 
-
-### interface call example1:
-```
-ros2 service call /add_two_ints  example_interfaces/srv/AddTwoInts "{'a': 2,'b': 4}"
-
-
-ros2 interface 
-list      packages  show      
-package   proto  
+### interface show example3(action):
 
 ```
+ros2 interface show turtlesim/action/RotateAbsolute 
+```
+return
 
-**********************
-# service command
-**********************
+```
+# The desired heading in radians
+float32 theta
+---
+# The angular displacement in radians to the starting position
+float32 delta
+---
+# The remaining rotation in radians
+float32 remaining
+
+```
+
+## interface proto 
+输出一个interface 原型，使用时在原型上加上大括号,中间加逗号，即变成一个字典
+
+```
+ros2 interface proto turtlesim/srv/Spawn
+```
+return:
+
+```
+"x: 0.0
+y: 0.0
+theta: 0.0
+name: ''
+"
+
+```
+
+## 其它
+```
+  list      List all interface types available
+  package   Output a list of available interface types  
+            within one package
+  packages  Output a list of packages that provide interfaces
+
+```
+
+***
+# service 命令
+
 ```
 ros2 service call
 ros2 service find
@@ -158,6 +196,16 @@ ros2 service list
 ```
 ros2 service type <service_name>
 ```
+example:
+
+```
+ros2 service type /spawn
+```
+return
+
+```
+turtlesim/srv/Spawn
+```
 ### to see the types of all the active services at the same time
 ```ros2 service list -t```
 
@@ -168,19 +216,60 @@ ros2 service type <service_name>
 
 ```ros2 service call <service_name> <service_type> <arguments>```
 
-example:
+example1:
 
 ```
 ros2 service call /clear std_srvs/srv/Empty
 
 ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}"
 
+ros2 service call /turtle1/set_pen turtlesim/srv/SetPen "{r: 100, g: 0, b: 0, width: 1, 'off': 0}"
+
+
 ros2 service call /kill turtlesim/srv/Kill "{name: 'turtle2'}"
 
 ```
+example2:
+```
+ros2 service call /add_two_ints  example_interfaces/srv/AddTwoInts "{'a': 2,'b': 4}"
+
+```
+example3(-r N, --rate N  Repeat the call at a specific rate in Hz
+ ):
+
+```
+ros2 service call -r 0.5 /spawn turtlesim/srv/Spawn "{x: 5,y: 5,theta: 0}"
+```
+***
+# action 命令
+
+```
+ros2 action info
+ros2 action list
+ros2 action send_goal
+```
+例子：--feedback 持续输出feedback
+```
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute {'theta: -1.57'} --feedback
+```
+***
+# ros2 bag 命令
+
+  convert  Given an input bag, write out a new bag with 
+            different settings
+  info     Print information about a bag to the screen
+  list     Print information about available plugins to the screen
+  play     Play back ROS data from a bag
+  record   Record ROS data to a bag
+  reindex  Reconstruct metadata file for a bag
+
+例子：
+
+```
+ros2 bag record /turtle1/pose -o velocities
 
 
-
+```
 
 *******************************
 # an example of service working
@@ -232,7 +321,7 @@ turtlesim.srv.SetPen_Response()
 ```
 
 **********************
-# param command
+# param 命令
 **********************
 ```
 ros2 param list
@@ -261,87 +350,12 @@ ros2 run turtlesim turtlesim_node --ros-args --params-file turtlesim.yaml
 ```
 
 *****
-# tf2 command
+# tf2 命令
 *****
 查看frame：
 ```ros2 run tf2_tools view_frames```
 查看frame相对位置
 ```ros2 run tf2_ros tf2_echo [source_frame] [target_frame]```
-
-
-
-
-**********************
-# create workspace
-**********************
-```
-mkdir ros2_ws
-cd ros2_ws
-mkdir src
-
-```
-### in ros2_ws folder 
-```
-colcon build
-```
-(if there is err when do colcon build, downgrade setuptools to 58.2.0)
-pip3 install setuptools==58.2.0
-
-#after that you can see folder "install", "build" and "log"
-#after adding "source ~/ros2_ws/install/setup.bash" to ~/.bashrc, you don't need to source setup.bash everytime during working on ros2_ws project
-
-### in folder src, create package "my_robot_controller" with rclpy
-```
-ros2 pkg create my_robot_controller --build-type ament_python --dependencies rclpy
-```
-
-### after that you can see new folder ""my_robot_controller" folder", "resource" and "test" in "my_robot_controller" folder 
-
-### in "my_robot_controller" folder(in "my_robot_controller" folder)
-*********************
-# colcon build after create a new file in the package
-********************
-1. change below in setup.py
-```
-entry_points={
-        'console_scripts': []
-}
-```
-*****
-example:
-```
-entry_points={
-        'console_scripts': [
-            'test_node = my_robot_controller.my_first_node:main'
-        ],
-    },
-```
-explaination: node name, package name, file name, main
-*****
-
-2. compile all the package
-
-```colcon build```
-
-compile with below command python
-```
-colcon build --symlink-install 
-```
-build only the my_package package 
-
-```colcon build --packages-select my_package```
-
-3. source or open a new cmd window sources automaticly
-```
-source ~/.bashrc
-```
- from inside the ros2_ws directory, run the following command to source your workspace:
-
- ```source install/local_setup.bash```
-
-
-
-
 
 
 
