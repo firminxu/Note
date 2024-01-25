@@ -115,7 +115,7 @@ docker run -d -p 8000:80 <respository><tag>
 ```
 # 容器操作
 *****
-# 在raspi OS运行docker，并在运行后删除容器
+## 在raspi OS运行docker，并在运行后删除容器
 
 
 ```
@@ -140,6 +140,16 @@ docker start -i <container ID>
 
 
 ```
+
+## docker exec
+
+```
+docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+docker exec mycontainer echo "Hello, Docker!"
+docker exec -it <container name or ID> 
+```
+docker exec 命令用于在运行中的容器中执行命令
+docker start 命令用于启动已经停止的容器
 
 ## 删除特定容器
 ```docker container rm <container ID>```
@@ -265,4 +275,26 @@ docker cp /home/pi/test.txt 88e1ed11b40e:/usr/share
 ## 复制docker里的文件到本地
 
 ```docker cp <container_id>:<source> <destination>```
+***
+# Docker Build
 
+先写Dockerfile
+
+```
+docker image build -t <iamge name>
+```
+
+***
+# Network --network --ipc (POSIX/SysV)Inter-Process Communication
+
+```
+docker run -it --user ros --network=host --ipc=host -v $PWD/source:/my_source_code my_image
+docker run -it --network=host --ipc=host -v $PWD:/usr/my_source_code ros:humble-perception-jammy
+```
+
+***
+# display
+
+```
+docker run -it --user ros --network=host --ipc=host -v $PWD/source:my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw my_image
+```
