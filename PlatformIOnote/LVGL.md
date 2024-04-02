@@ -118,3 +118,6 @@ void onLEDCallback(lv_event_t * e)
 	digitalWrite(LED_BUILTIN, HIGH);
 }
 ```
+
+## 6. Squareline Studio的修改label的TEXT属性的语句
+```_ui_label_set_property(ui_dateLabel, _UI_LABEL_PROPERTY_TEXT, "Bigprogress");```
