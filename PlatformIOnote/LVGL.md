@@ -108,8 +108,8 @@ void my_touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 [程序](main.cpp)
 
 ***
-## 5. LVGL创建的回调函数导入
-### 5.1 LVGL创建的回调函数都在ui_events.h里声明，在ui_event.c中调用，只需要将ui_events.c中的函数剪切到main函数中即可。这样可以避免重新导出ui时被覆盖掉
+## 5. LVGL创建的回调函数导入(Squareline Studio导出的函数)
+### 5.1 LVGL创建的回调函数都在ui_events.h里声明，在ui_event.c中调用，要将ui_events.c中的函数剪切到main函数中即可。这样可以避免重新导出ui时被覆盖掉,并且要在main函数中声明，或者在ui_events.h中声明。
 ### 5.2 形参的格式为（lv_event_t * e）,如下：
 
 ```
