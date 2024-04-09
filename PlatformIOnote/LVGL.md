@@ -121,3 +121,19 @@ void onLEDCallback(lv_event_t * e)
 
 ## 6. Squareline Studio的修改label的TEXT属性的语句
 ```_ui_label_set_property(ui_dateLabel, _UI_LABEL_PROPERTY_TEXT, "Bigprogress");```
+
+## 7. Squareline Studio在LVGL创建chart时的series的设置
+
+### 7.1 把ui_Chart1_series_1的声明放到ui.h里
+```    
+    lv_chart_series_t *ui_Chart1_series_1;
+    lv_chart_series_t *ui_Chart1_series_2;
+```
+
+### 7.2 把ui_Chart1_series_1的初始化放到相应屏幕的ui_***_init()里
+
+```
+ui_Chart1_series_1 = lv_chart_add_series(ui_Chart1, lv_color_hex(0x0400FF),     LV_CHART_AXIS_PRIMARY_Y);
+```
+### 7.3 把ui_Chart1_series_1的设置放到相应屏幕的活动函数里，用下列语句判断是否是当前屏幕， 
+```if (ui_XXX == lv_scr_act())```
