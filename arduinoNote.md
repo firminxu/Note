@@ -10,3 +10,14 @@
 ***
 ### ESP32 GPIO 12 (启动时必须为低电平), 在Air_Fresher项目中给GPIO12上的开关加了上拉电阻，导致```rst:0x10 (RTCWDT_RTC_RESET),boot:0x37 (SPI_FAST_FLASH_BOOT)```错误, 同样如果12脚连接的外设，也会导致上传程序出错而无法上传
 
+### Preferences库中的，
+#### 1. preferences.begin(“name”, false)中的第二个参数必须为false.否则NVS分区无法找到。
+#### 2. preferences.clear()用来清除nvs分区中的所有数据。
+#### 3. preferences.putString(“key”, “value”)用来存储字符串数据。
+#### 4. preferences.getString(“key”, “value”)用来获取字符串数据。
+#### 5. preferences.putInt(“key”, 123)用来存储整数数据。
+#### 6. preferences.getInt(“key”, 123)用来获取整数数据。
+#### 7. preferences.putBool(“key”, true)用来存储布尔值数据。
+#### 8. 重新上传程序后不能清空nvs分区中的数据。要用preferences.clear()来清空nvs分区中的所有数据。
+
+
