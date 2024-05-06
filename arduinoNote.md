@@ -8,6 +8,9 @@
 ***
 ### ESP32 所有引脚输入电压为3.3V,最高为3.6V, 而Arduino Uno的引脚电压是5V，选用外设时须注意
 ***
+#### 霍尔编码器掉坑里了，电路板用5V，ESP32用3.3V，所以无法正常工作。
+***
+***
 ### ESP32 GPIO 12 (启动时必须为低电平), 在Air_Fresher项目中给GPIO12上的开关加了上拉电阻，导致```rst:0x10 (RTCWDT_RTC_RESET),boot:0x37 (SPI_FAST_FLASH_BOOT)```错误, 同样如果12脚连接的外设，也会导致上传程序出错而无法上传
 
 ### Preferences库中的，
