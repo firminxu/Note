@@ -16,3 +16,5 @@ ip addr
 ***
 # 查看ip命令2
 ```hostname -I```
+
+
