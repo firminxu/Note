@@ -24,6 +24,11 @@ mosquitto查看所有话题
 ***
 `mosquitto_sub -v -t '#'`
 
+mosquitto发布消息
+***
+`mosquitto_pub -t "topic" -m "message"`
+
+
 
 mosquitto查看所有订阅者
 ***
