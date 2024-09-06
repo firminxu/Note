@@ -5,6 +5,9 @@ vMgE6QhgIB1QdRg5J_zOChWBj1JCFJogvP5KDyRULmjAVH5wwFecNnYtFXIBasbUZyExL0yU7sBND6dh
 Airfresher:
 N-mYnYPTUhq_N6MA9K-BgasERXhkzTU-oimpdbrELLJaXoJvp802FzF0ijbl9sVWtUojKbNaIm-T-hXosgbo1w==
 
+fishfeeder1:
+9o_k13WpIrtLnMj0tZPPFDyI-cFF2OfCDPgq6f5Gzvv0vcewBTHERapI7kJPNsm-WNmpKW6exru91drwCDuBcw==
+
 node-red:
 admin:
 m..n15
