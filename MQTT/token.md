@@ -8,6 +8,9 @@ N-mYnYPTUhq_N6MA9K-BgasERXhkzTU-oimpdbrELLJaXoJvp802FzF0ijbl9sVWtUojKbNaIm-T-hXo
 fishfeeder1:
 9o_k13WpIrtLnMj0tZPPFDyI-cFF2OfCDPgq6f5Gzvv0vcewBTHERapI7kJPNsm-WNmpKW6exru91drwCDuBcw==
 
+fishfeeder2:
+lLO1W3VALUoMcLz8gcZLDImXBvYkwTbqZnsUtbHgcnt69wEFFfmpjAmV2IQAvPM_yvF4Eef-Ru6FgbvmoHqADQ==
+
 node-red:
 admin:
 m..n15
