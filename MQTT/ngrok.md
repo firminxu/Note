@@ -6,7 +6,7 @@
 打开多个端口的方法：
 https://www.youtube.com/watch?v=js1lxR12hHo&list=PLT9nYbazZFLm57rP0o5qtmw8lUmJgPA5Y&index=12
 1. ngrok config add-authtoken $YOUR_AUTHTOKEN
-2. sudo nano .config/ngrok/config.yml   
+2. sudo nano .config/ngrok/ngrok.yml   
 3. add:
 `tunnels:
  http:
