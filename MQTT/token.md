@@ -11,6 +11,9 @@ fishfeeder1:
 fishfeeder2:
 lLO1W3VALUoMcLz8gcZLDImXBvYkwTbqZnsUtbHgcnt69wEFFfmpjAmV2IQAvPM_yvF4Eef-Ru6FgbvmoHqADQ==
 
+RO_Monitor:
+ZAOUCwtcgh-msDGCR2fJ9DrD6WaxPkMCoHn6F64VXeSvlWubGiz23tRpuPrMbBMIwK-ZPxfHQ0vINFi4NFGu6A==
+
 node-red:
 admin:
 m..n15
