@@ -15,9 +15,7 @@ influxdb重设密码命令
 ***
 `sudo influx`
 
-influx 删除数据库里的某行数据
-***
-`influx delete --bucket Environment_porch --predicate '_measurement="LED"' --start 1970-01-01T00:00:00Z --stop 2024-08-30T00:00:00Z`
+
 
 
 mosquitto配置文件路径
