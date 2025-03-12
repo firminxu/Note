@@ -1,0 +1,30 @@
+How to use jupyter notebook SSH remote Raspberry Pi on computer
+To use Jupyter Notebook via SSH remote connection to a Raspberry Pi from your computer, follow these steps:
+
+Step 1: Check SSH Access to Raspberry Pi
+Ensure Network Connection: Make sure that the Raspberry Pi is connected to the same network as your computer.
+Obtain IP Address: Find the IP address of your Raspberry Pi. You can do this by running hostname -I on the Raspberry Pi.
+Test SSH Access: Verify that you can connect to the Raspberry Pi via SSH from your computer. Open a terminal on your computer and run:
+sh
+ssh pi@<RaspberryPi_IP>
+Replace <RaspberryPi_IP> with the actual IP address of your Raspberry Pi. You should be prompted to enter the Raspberry Pi's password.
+Step 2: Setting Up and Accessing Jupyter Notebook
+Install Jupyter Notebook: Once connected to your Raspberry Pi via SSH, install Jupyter Notebook by running:
+
+sh
+sudo apt-get install jupyter-notebook
+Start Jupyter Notebook: Start the Jupyter Notebook server on the Raspberry Pi by running:
+
+sh
+jupyter-notebook --no-browser --port=8888
+This will start Jupyter Notebook on port 8888 without opening a browser.
+
+Create SSH Tunnel: On your computer, open a new terminal and create an SSH tunnel to forward the Jupyter Notebook port to your local machine. Run:
+
+sh
+ssh -L 8888:localhost:8888 pi@<RaspberryPi_IP>
+This command forwards port 8888 on the Raspberry Pi to port 8888 on your local machine.
+
+Follow-up Steps
+Access Jupyter Notebook: Open a web browser on your computer and navigate to http://localhost:8888. You should see the Jupyter Notebook interface, and you can start using it as if it were running locally on your computer.
+By following these steps, you can use Jupyter Notebook on your Raspberry Pi remotely from your computer via SSH.
